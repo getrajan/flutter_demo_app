@@ -15,3 +15,19 @@ class RegisterButtonPressed extends RegisterEvent {
   @override
   List<Object> get props => [email, password];
 }
+class RegisterEmailChange extends RegisterEvent{
+  final String email;
+
+  RegisterEmailChange({this.email});
+
+  @override
+  List<Object> get props => [email];
+}
+class RegisterPasswordChange extends RegisterEvent{
+  final String password;
+
+  RegisterPasswordChange({this.password});
+
+  @override
+  List<Object> get props => [password];
+}

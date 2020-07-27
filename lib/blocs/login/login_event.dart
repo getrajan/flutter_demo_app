@@ -12,3 +12,19 @@ class LoginButtonPressed extends LoginEvent{
   @override
   List<Object> get props => [email,password];
 }
+class LoginEmailChange extends LoginEvent{
+  final String email;
+
+  LoginEmailChange({this.email});
+
+  @override
+  List<Object> get props => [email];
+}
+class LoginPasswordChange extends LoginEvent{
+  final String password;
+
+  LoginPasswordChange({this.password});
+
+  @override
+  List<Object> get props => [password];
+}

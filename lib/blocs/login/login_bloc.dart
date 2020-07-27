@@ -1,6 +1,7 @@
 import 'package:flutter_app_demo/blocs/login/login_event.dart';
 import 'package:flutter_app_demo/blocs/login/login_state.dart';
 import 'package:flutter_app_demo/repo/user_repo.dart';
+import 'package:flutter_app_demo/utils/validators.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -13,6 +14,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
     if (event is LoginButtonPressed) {
       yield* _mapLoginButtonPressedToState(event.email, event.password);
+    }else if(event is LoginEmailChange){
+      yield* _mapLoginEmailChanageToState(event.email);
+    }else if(event is LoginPasswordChange){
+      yield* _mapLoginPasswordChangeToState(event.password);
     }
   }
 
@@ -27,4 +32,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginState.failure();
     }
   }
+//  Stream for Login Password Changed
+Stream<LoginState>_mapLoginPasswordChangeToState(String password) async*{
+    yield state.update(isPasswordValid: Validators.isValidPassword(password));
+}
+//stream for login email changed
+Stream<LoginState> _mapLoginEmailChanageToState(String email) async*{
+    yield state.update(isEmailValid: Validators.isValidEmail(email));
+}
 }
