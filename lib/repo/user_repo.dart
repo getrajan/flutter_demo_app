@@ -7,7 +7,7 @@ class UserRepo {
 
   Future<void> signUp(String email, String password) {
     return _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password)
+        email: email, password: password);
   }
 
   Future<void> signIn(String email, String password) {
